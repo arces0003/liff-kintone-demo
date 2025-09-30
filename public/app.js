@@ -33,7 +33,7 @@
       saveStatus.className = "";
       try {
         const sub = byId("ktSubdomain").value.trim();
-        const appId = byId("ktAppId").value.trim();
+        const appId = Number(byId("ktAppId").value.trim());
         const token = byId("ktToken").value.trim();
 
         if (!sub || !appId || !token) throw new Error("サブドメイン / アプリID / APIトークン を入力してください。");
