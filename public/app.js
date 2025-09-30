@@ -44,7 +44,7 @@
           record: { roomId: { value: idForSave }, sourceType: { value: sourceType } }
         };
 
-        const resp = await fetch(`https://${sub}.cybozu.com/k/v1/record.json`, {
+        const resp = await fetch(`https://arces-demo.cybozu.com/k/v1/record.json`, {
           method: "POST",
           headers: {
             "X-Cybozu-API-Token": token,
