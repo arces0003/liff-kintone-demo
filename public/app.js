@@ -27,7 +27,7 @@
     liffStatus.innerHTML = `<span class="ok">LIFF 初期化OK</span>`;
     contextBox.textContent = JSON.stringify(
       {
-        type: sourceType,
+        sourceType: ctx.type,
         userId: ctx.userId || null,
         groupId: ctx.groupId || null,
         roomId: ctx.roomId || null,
