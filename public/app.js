@@ -19,11 +19,10 @@
 
     // --- 2) LIFFコンテキスト取得 ---
     const ctx = liff.getContext();
-    const sourceType =
-      ctx.type ||
-      (ctx.groupId ? "group" : ctx.roomId ? "room" : ctx.userId ? "utou" : "unknown");
-
-    const idForSave = ctx.roomId || ctx.groupId || ctx.userId || null;
+    const SourceType = ctx.type;
+    const UserId = ctx.userId;
+    const GroupId = ctx.groupId;
+    const RoomId = ctx.roomId;
 
     liffStatus.innerHTML = `<span class="ok">LIFF 初期化OK</span>`;
     contextBox.textContent = JSON.stringify(
@@ -43,11 +42,7 @@
       saveStatus.className = "";
 
       try {
-        if (!idForSave) {
-          throw new Error("保存できる ID が取得できません。トーク/グループから開いてください。");
-        }
-
-        const payload = { userId: idForSave, sourceType };
+        const payload = { userId: UserId, groupId: GroupId, roomId: RoomId, sourceType: SourceType };
 
         // Vercel サーバーレス関数を呼ぶ
         const resp = await fetch("/api/kintone.js", {
