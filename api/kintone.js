@@ -3,6 +3,12 @@
 // レスポンス: kintone の API レスポンスをそのまま返却
 
 export default async function handler(req, res) {
+  console.log("METHOD:", req.method);
+  console.log("BODY RAW:", req.body);
+  console.log("ENV SUB:", process.env.KINTONE_SUBDOMAIN);
+  console.log("ENV APP:", process.env.KINTONE_APP_ID);
+  console.log("ENV TOKEN exists:", !!process.env.KINTONE_API_TOKEN);
+  
   // CORS
   const allowOrigin = process.env.ALLOW_ORIGIN || '*';
   res.setHeader('Access-Control-Allow-Origin', allowOrigin);
