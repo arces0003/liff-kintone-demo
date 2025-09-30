@@ -1,5 +1,5 @@
 // Vercel Serverless Function (Node.js 18+)
-// リクエスト: { userId: string, sourceType: "utou" | "group" | "room" }
+// リクエスト: { userId: string, groupId: string, roomId: string, sourceType: "utou" | "group" | "room" }
 // レスポンス: kintone の API レスポンスをそのまま返却
 
 export default async function handler(req, res) {
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   try {
     // --- ★ ここで明示的に読み取る ---
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-    const { userId, sourceType } = body || {};
+    const { userId, groupId, roomId, sourceType } = body || {};
 
     if (!userId || !sourceType) {
       return res.status(400).json({ message: 'userId and sourceType are required' });
@@ -43,6 +43,8 @@ export default async function handler(req, res) {
       app: appId,
       record: {
         userId:     { value: userId },
+        groupId:     { value: groupId },
+        roomId:     { value: roomId },
         sourceType: { value: sourceType }
       }
     };
