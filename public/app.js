@@ -48,8 +48,7 @@
           method: "POST",
           headers: {
             "X-Cybozu-API-Token": token,
-            "Content-Type": "application/json",
-            "X-Requested-With": "XMLHttpRequest"
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(body)
         });
