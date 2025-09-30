@@ -3,7 +3,7 @@
 // レスポンス: kintone の API レスポンスをそのまま返却
 
 export default async function handler(req, res) {
-  // CORS (必要なら Origin を絞ってください)
+  // CORS
   const allowOrigin = process.env.ALLOW_ORIGIN || '*';
   res.setHeader('Access-Control-Allow-Origin', allowOrigin);
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -17,7 +17,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { userId, sourceType } = req.body || {};
+    // --- ★ ここで明示的に読み取る ---
+    const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const { userId, sourceType } = body || {};
+
     if (!userId || !sourceType) {
       return res.status(400).json({ message: 'userId and sourceType are required' });
     }
