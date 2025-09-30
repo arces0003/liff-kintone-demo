@@ -50,7 +50,7 @@
         const payload = { userId: idForSave, sourceType };
 
         // Vercel サーバーレス関数を呼ぶ
-        const resp = await fetch("/api/kintone", {
+        const resp = await fetch("/api/kintone.js", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
